@@ -8,20 +8,23 @@ sys.path.append(os.path.abspath(os.path.join(os.getcwd(), os.pardir))+'/strategy
 from bot_strategy import BotStrategy
 
 def main(argv):
-	args = BotArguments(argv)
-	
-	chart = BotChart(args.exchange, args.pair, 
-					args.period, args.starttime, 
-					args.endtime)
-	
-	strategy = BotStrategy()
-	for candlestick in chart.getPoints():
-		strategy.tick(candlestick)
+    args = BotArguments(argv)
 
-	strategy.showProfit()
+    chart = BotChart(args.exchange, args.pair,
+                    args.period, args.starttime,
+                    args.endtime)
+
+    strategy = BotStrategy()
+    for candlestick in chart.getPoints():
+        strategy.tick(candlestick)
+
+    strategy.showProfit()
+    strategy.showPrices()
+    strategy.showEMAs()
+    strategy.showSMAs()
 
 if __name__ == "__main__":
-	main(sys.argv[1:])
+    main(sys.argv[1:])
 
 
 
